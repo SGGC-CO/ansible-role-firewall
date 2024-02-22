@@ -1,0 +1,9 @@
+---
+# defaults file for ansible-role-firewall
+proxy_enable: "0"
+
+# Inventory file
+sshport: "22"
+proxy_ip: "1.2.3.4"
+user: "ubuntu"
+ssh_private_key_file: "~/.ssh/id_rsa"

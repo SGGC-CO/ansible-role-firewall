@@ -1,0 +1,5 @@
+---
+roles:
+  - name: ansible-role-firewall
+    src: https://github.com/SGGC-CO/ansible-role-firewall.git
+    version: main

@@ -1,0 +1,33 @@
+---
+# tasks file for ansible-role-firewall
+- name: Allow incoming access to ssh from proxy
+  community.general.ufw:
+    rule: allow
+    port: "{{ hostvars['gol_server'].ansible_sshport }}"
+    proto: tcp
+    src: "{{ hostvars[ 'gol_server' ].ansible_proxy_ip }}"
+  when: proxy_enable == '1'
+
+- name: Allow incoming access to ssh
+  community.general.ufw:
+    rule: allow
+    port: "{{ hostvars['gol_server'].ansible_sshport }}"
+    proto: tcp
+  when: proxy_enable == '0'
+
+- name: Allow incoming access to 80
+  community.general.ufw:
+    rule: allow
+    port: 80
+    proto: tcp
+- name: Allow incoming access to 443
+  community.general.ufw:
+    rule: allow
+    port: 443
+    proto: tcp
+
+- name: enable ufw
+  community.general.ufw:
+    state: enabled
+  notify:
+    - reload ufw
